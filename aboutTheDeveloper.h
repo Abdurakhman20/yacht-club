@@ -1,0 +1,6 @@
+#ifndef ABOUTTHEDEVELOPER_H
+#define ABOUTTHEDEVELOPER_H
+
+void aboutDev();
+
+#endif // ABOUTTHEDEVELOPER_H

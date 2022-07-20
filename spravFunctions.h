@@ -1,9 +1,11 @@
 #ifndef SPRAVFUNCTIONS_H
 #define SPRAVFUNCTIONS_H
 
-void dispSpr();
-void sprAdd();
-void sprDel();
-void sprEdit();
+void displaySprav();
+void spravAdd();
+void spravDelete();
+void spravEdit();
+void nameOpen();
+void portOpen();
 
 #endif // SPRAVFUNCTIONS_H

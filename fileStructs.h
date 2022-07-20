@@ -27,9 +27,6 @@ struct port
 void closefile();
 void savefile();
 void vivod();
-void nameopen();
-void portopen();
-void about();
 void EXPORT();
 void SPpr();
 

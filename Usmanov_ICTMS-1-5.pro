@@ -4,6 +4,7 @@ CONFIG -= app_bundle
 CONFIG -= qt
 
 SOURCES += \
+        aboutTheDeveloper.c \
         main.c \
         mainFileEdit.c \
         projectMenu.c \
@@ -11,6 +12,7 @@ SOURCES += \
         spravFunctions.c
 
 HEADERS += \
+    aboutTheDeveloper.h \
     fileStructs.h \
     mainFileEdit.h \
     projectMenu.h \

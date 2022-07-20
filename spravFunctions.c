@@ -11,7 +11,7 @@
 
 
 
-void dispSpr(){
+void displaySprav(){
     system("clear");
     FILE *in =0;
     in = fopen("/home/abdurakhman/Usmanov_ICTMS-1-5/sprav.db","r");
@@ -47,7 +47,7 @@ void dispSpr(){
 }
 
 
-void sprAdd(){
+void spravAdd(){
     FILE *in = 0, *in2 = 0;
     int nN=0;
     char nc[50] = {0};
@@ -84,7 +84,7 @@ void sprAdd(){
     return;
 }
 
-void sprDel(){
+void spravDelete(){
     FILE *in = 0, *in2 = 0;
     int i, k = 0;
     struct name *sprav;
@@ -138,7 +138,7 @@ void sprDel(){
     return;
 }
 
-void sprEdit(){
+void spravEdit(){
     FILE *in = 0, *in2 = 0;
     int i, k = 0;
     struct name *sprav;
@@ -193,3 +193,67 @@ void sprEdit(){
     scanf("%s",z);
     return;
 }
+
+void nameOpen(){
+    FILE *in = 0, *in2 = 0;
+    int i = 0;
+    char buf[500];
+    in = fopen("/home/abdurakhman/Usmanov_ICTMS-1-5/name.db","r");
+    int NC=0;
+    char str[50] = { 0 };
+    while(fscanf(in,"%s",str)!=EOF)
+        NC++;
+    fclose(in);
+    in = fopen("/home/abdurakhman/Usmanov_ICTMS-1-5/name.db","r");
+    in2 = fopen("/home/abdurakhman/Usmanov_ICTMS-1-5/sprav.db","w");
+    for(i=0;i<NC;i++)
+        fputs(fgets(buf,499,in),in2);
+    fclose(in);
+    fclose(in2);
+    printf("\n\nFile opened\n");
+    printf("write SHOW to show file: ");
+    char z[5];
+    scanf("%s",z);
+    displaySprav();
+    return;
+}
+
+void portOpen(){
+    FILE *in = 0, *in2 = 0;
+    int i = 0;
+    char buf[500];
+    in = fopen("/home/abdurakhman/Usmanov_ICTMS-1-5/home_port.db","r");
+    int NC=0;
+    char str[50] = { 0 };
+    while(fscanf(in,"%s",str)!=EOF)
+        NC++;
+    fclose(in);
+    in = fopen("/home/abdurakhman/Usmanov_ICTMS-1-5/home_port.db","r");
+    in2 = fopen("/home/abdurakhman/Usmanov_ICTMS-1-5/sprav.db","w");
+    for(i=0;i<NC;i++)
+        fputs(fgets(buf,499,in),in2);
+    fclose(in);
+    fclose(in2);
+    printf("\n\nFile opened\n");
+    printf("write SHOW to show file: ");
+    char z[5];
+    scanf("%s",z);
+    displaySprav();
+    return;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
