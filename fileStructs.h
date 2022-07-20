@@ -29,11 +29,7 @@ void savefile();
 void vivod();
 void nameopen();
 void portopen();
-void dispSpr();
 void about();
-void sprAdd();
-void sprDel();
-void sprEdit();
 void EXPORT();
 void SPpr();
 

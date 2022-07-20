@@ -7,6 +7,7 @@
 #include "fileStructs.h"
 #include "projectMenu.h"
 #include "mainFileEdit.h"
+#include "spravFunctions.h"
 
 void mainAdd(){
     FILE *in = 0;

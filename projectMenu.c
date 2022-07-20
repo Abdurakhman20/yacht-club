@@ -7,6 +7,7 @@
 #include <malloc.h>
 #include <locale.h>
 #include "mainFileEdit.h"
+#include "spravFunctions.h"
 
 
 void menu()

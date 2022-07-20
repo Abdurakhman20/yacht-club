@@ -7,10 +7,12 @@ SOURCES += \
         main.c \
         mainFileEdit.c \
         projectMenu.c \
-        readAndWrite.c
+        readAndWrite.c \
+        spravFunctions.c
 
 HEADERS += \
     fileStructs.h \
     mainFileEdit.h \
     projectMenu.h \
-    readAndWrite.h
+    readAndWrite.h \
+    spravFunctions.h

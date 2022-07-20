@@ -6,7 +6,7 @@
 #include "fileStructs.h"
 #include "projectMenu.h"
 #include "mainFileEdit.h"
-
+#include "spravFunctions.h"
 
 int main()
 {
