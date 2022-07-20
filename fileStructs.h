@@ -26,18 +26,10 @@ struct port
 
 void closefile();
 void savefile();
-//void menu();
 void vivod();
-//void spravochnik();
-//void choose();
 void nameopen();
 void portopen();
 void dispSpr();
-//void file();
-//void edit();
-void mainAdd();
-void mainDel();
-void mainEdit();
 void about();
 void sprAdd();
 void sprDel();

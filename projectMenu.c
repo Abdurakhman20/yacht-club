@@ -6,6 +6,7 @@
 #include <string.h>
 #include <malloc.h>
 #include <locale.h>
+#include "mainFileEdit.h"
 
 
 void menu()

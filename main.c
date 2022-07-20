@@ -5,6 +5,7 @@
 #include "readAndWrite.h"
 #include "fileStructs.h"
 #include "projectMenu.h"
+#include "mainFileEdit.h"
 
 
 int main()
