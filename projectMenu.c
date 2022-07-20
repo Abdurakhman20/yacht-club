@@ -26,10 +26,10 @@ void menu()
         switch (ch) {
         case '1': file();break;
         case '2': edit(); break;
-        case '3': /*vivod();*/ break;
-        case '4': /*EXPORT();*/ break;
+        case '3': vivod(); break;
+        case '4': EXPORT(); break;
         case '5': spravochnik(); break;
-        case '6': /*about();*/ break;
+        case '6': about(); break;
         case '7': exit(0);
         }
     }
@@ -48,9 +48,9 @@ void file()
         ch = getchar();
         printf("\n");
         switch (ch) {
-        case '1': /*read();*/ break;
-        case '2': /*savefile();*/ break;
-        case '3': /*closefile();*/ break;
+        case '1': read(); break;
+        case '2': savefile(); break;
+        case '3': closefile(); break;
         case '4': return;
         }
     }
@@ -69,9 +69,9 @@ void edit()
         ch = getchar();
         printf("\n");
         switch (ch) {
-        case '1': /*mainAdd();*/ break;
-        case '2': /*mainDel();*/ break;
-        case '3': /*mainEdit();*/ break;
+        case '1': mainAdd(); break;
+        case '2': mainDel(); break;
+        case '3': mainEdit(); break;
         case '4': return;
         }
     }
@@ -91,12 +91,12 @@ void spravochnik(){
         ch = getchar();
         printf("\n");
         switch (ch) {
-        case '1': /*choose();*/ break;
-        case '2': /*dispSpr();*/ break;
-        case '3': /*sprEdit();*/ break;
-        case '4': /*sprAdd();*/ break;
-        case '5': /*sprDel();*/ break;
-        case '6': /*remove("/home/user/practic/sprav.db");*/ return;
+        case '1': choose(); break;
+        case '2': dispSpr(); break;
+        case '3': sprEdit(); break;
+        case '4': sprAdd(); break;
+        case '5': sprDel(); break;
+        case '6': remove("/home/abdurakhman/Usmanov_ICTMS-1-5/sprav.db"); return;
         }
     }
 }
@@ -112,8 +112,8 @@ void choose(){
         ch = getchar();
         printf("\n");
         switch (ch) {
-        case '1': /*nameopen();*/ break;
-        case '2': /*portopen();*/ break;
+        case '1': nameopen(); break;
+        case '2': portopen(); break;
         case '3': return;
         }
     }

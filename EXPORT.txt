@@ -1,0 +1,10 @@
+|1 |120A4 |KonorMcgregor     |"sailing"           |"walking"           |"single-hull"       |Irish               |
+|2 |121B4 |NateDias          |"motor"             |"racing"            |"catamaran"         |Sevastopol          |
+|3 |122C4 |KhabibNurmagomedov|"motor"             |"racing"            |"double-hull"       |Murmansk            |
+|4 |123D4 |DustinPoirier     |"sailing"           |"walking"           |"double-hull"       |Spain               |
+|5 |124I4 |JustinGaethje     |"motor"             |"racing"            |"polymaran"         |Novosibirsk         |
+|6 |125F4 |JonJones          |"sailing"           |"walking"           |"catamaran"         |Italy               |
+|7 |126G4 |KhamzatChimaev    |"motor"             |"walking"           |"single-hull"       |Spain               |
+|8 |127K4 |FrensisNgannoo    |"motor"             |"racing"            |"single-hull"       |Sochi               |
+|9 |128L4 |KamaruUsman       |"sailing"           |"walking"           |"polymaran"         |Sochi               |
+|10|129M4 |LukeRockhold      |"sailing"           |"walking"           |"double-hull"       |Italy               |

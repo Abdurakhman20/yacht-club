@@ -4,11 +4,11 @@
 struct list{
       int id;
       char gosId[20];
-      char idName[20];
-      char yachtClass[20];
-      char yachtType[20];
-      char yachtBody[20];
-      char idPort[20];
+      char idName[50];
+      char yachtClass[50];
+      char yachtType[50];
+      char yachtBody[50];
+      char idPort[50];
 };
 
 struct name
