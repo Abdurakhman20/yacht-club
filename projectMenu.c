@@ -99,7 +99,7 @@ void spravochnik(){
         case '3': spravEdit(); break;
         case '4': spravAdd(); break;
         case '5': spravDelete(); break;
-        case '6': remove("/home/abdurakhman/Usmanov_ICTMS-1-5/sprav.db"); return;
+        case '6': remove("/home/abdurakhman/Usmanov_ICTMS-1-5/spravFile.db"); return;
         }
     }
 }

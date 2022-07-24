@@ -10,7 +10,7 @@ void aboutDev()
     printf("\n========================================================================");
     printf("\nMy name is Abdurakhman Usmanov");
     printf("\nI am a student of ICTMS 1-5");
-    printf("\n\nwrite EXIT to escape: ");
+    printf("\n\nEnter any character to escape: ");
     char s[10];
     scanf("%s",s);
     return;

@@ -18,20 +18,20 @@ void read()
     in = fopen("/home/abdurakhman/Usmanov_ICTMS-1-5/yachtclub.db","r");
     if (!in) {
         printf("\n\nERROR\n");
-        printf("\n\nwrite EXIT to escape: ");
+        printf("\n\nEnter any character to escape: ");
         scanf("%s",s);
         return file();
     }
     in = fopen("/home/abdurakhman/Usmanov_ICTMS-1-5/yachtclub.db","r");
-    in2 = fopen("/home/abdurakhman/Usmanov_ICTMS-1-5/mainf.db","w");
+    in2 = fopen("/home/abdurakhman/Usmanov_ICTMS-1-5/mainFileYacht.db","w");
     for(i=0;i<10;i++)
         fputs(fgets(buf,499,in),in2);
     fclose(in);
     fclose(in2);
-    printf("\n\nSuccessful\n");
-    printf("write SHOW to show file: ");
-    char z[5];
-    scanf("%s",z);
+    //printf("\n\nSuccessful\n");
+    //printf("write SHOW to show file: ");
+    //char z[5];
+    //scanf("%s",z);
     vivod();
     return;
 }
@@ -40,18 +40,18 @@ void savefile(){
     FILE *in = 0, *in2 = 0;
     int i, mN = 0;
     char buf[100], nc[100] = {0};
-    in = fopen("/home/abdurakhman/Usmanov_ICTMS-1-5/mainf.db","r");
+    in = fopen("/home/abdurakhman/Usmanov_ICTMS-1-5/mainFileYacht.db","r");
     char s[10];
     if (!in) {
         printf("\n\nERROR: file is not open\n");
-        printf("write EXIT to escape: ");
+        printf("Enter any character to escape: ");
         scanf("%s",s);
         return file();
     }
-    while(fscanf(in,"%s",nc)!=EOF)
+    while(fscanf(in,"%[^\n]%*c",nc)!=EOF)
         mN++;
     fclose(in);
-    in = fopen("/home/abdurakhman/Usmanov_ICTMS-1-5/mainf.db","r");
+    in = fopen("/home/abdurakhman/Usmanov_ICTMS-1-5/mainFileYacht.db","r");
     in2 = fopen("/home/abdurakhman/Usmanov_ICTMS-1-5/yachtclub.db","w");
     for(i=0;i<mN;i++)
         fputs(fgets(buf,499,in),in2);
@@ -62,18 +62,18 @@ void savefile(){
 
 void closefile(){
     FILE *in = 0;
-    in = fopen("/home/abdurakhman/Usmanov_ICTMS-1-5/mainf.db","r");
+    in = fopen("/home/abdurakhman/Usmanov_ICTMS-1-5/mainFileYacht.db","r");
     char s[10];
     if (!in) {
         printf("\n\nERROR: file is not open\n");
-        printf("write EXIT to escape: ");
+        printf("Enter any character to escape: ");
         scanf("%s",s);
     }
     else {
         printf("\n\nFile closed\n");
-        printf("write EXIT to escape: ");
+        printf("Enter any character to escape: ");
         scanf("%s",s);
-        remove("/home/abdurakhman/Usmanov_ICTMS-1-5/mainf.db");
+        remove("/home/abdurakhman/Usmanov_ICTMS-1-5/mainFileYacht.db");
     }
     return;
 }
@@ -86,17 +86,17 @@ void vivod(protect)
     int lN = 0, nN = 0, pN = 0;
     char nc[50] = { 0 };
     in = fopen("/home/abdurakhman/Usmanov_ICTMS-1-5/yachtclub.db","r");
-    while(fscanf(in,"%s",nc)!=EOF)
+    while(fscanf(in,"%[^\n]%*c",nc)!=EOF)
         lN++;
     fclose(in);
     in = fopen("/home/abdurakhman/Usmanov_ICTMS-1-5/yachtclub.db","r");
     in2 = fopen("/home/abdurakhman/Usmanov_ICTMS-1-5/name.db","r");
-    while(fscanf(in2,"%s",nc)!=EOF)
+    while(fscanf(in2,"%[^\n]%*c",nc)!=EOF)
         nN++;
     fclose(in2);
     in2 = fopen("/home/abdurakhman/Usmanov_ICTMS-1-5/name.db","r");
     in3 = fopen("/home/abdurakhman/Usmanov_ICTMS-1-5/home_port.db","r");
-    while(fscanf(in3,"%s",nc)!=EOF)
+    while(fscanf(in3,"%[^\n]%*c",nc)!=EOF)
         pN++;
     fclose(in3);
     in3 = fopen("/home/abdurakhman/Usmanov_ICTMS-1-5/home_port.db","r");
@@ -105,7 +105,7 @@ void vivod(protect)
     int i, j, k;
     char str[100] = { 0 };
     for (i = 0; i < lN; i++) {
-        fscanf(in, "%s", str);
+        fscanf(in, "%[^\n]%*c", str);
         char *tok = strtok(str, ";");
         while (tok!=NULL) {
             yacht[i].id = atoi(tok);
@@ -127,7 +127,7 @@ void vivod(protect)
     struct name *sprav;
     sprav = (struct name*)malloc(nN * sizeof(struct name));
     for (i = 0; i < nN; i++) {
-        fscanf(in2, "%s", str);
+        fscanf(in2, "%[^\n]%*c", str);
         char *tok = strtok(str, ";");
         while (tok!=NULL) {
             sprav[i].id = atoi(tok);
@@ -139,7 +139,7 @@ void vivod(protect)
     struct port *hp;
     hp = (struct port*)malloc(pN * sizeof(struct name));
     for (i = 0; i < pN; i++) {
-        fscanf(in3, "%s", str);
+        fscanf(in3, "%[^\n]%*c", str);
         char *tok = strtok(str, ";");
         while (tok!=NULL) {
             hp[i].id = atoi(tok);
@@ -166,7 +166,7 @@ void vivod(protect)
 
         fclose(EXPORTTXT);
         printf("Export was succsessful");
-        printf("\nwrite EXIT to escape: ");
+        printf("\nEnter any character to escape: ");
         char s[10];
         scanf("%s",s);
         protect = 0;
@@ -185,11 +185,11 @@ void vivod(protect)
         for (k=0;k<pN;k++)
             if (atoi(yacht[i].idPort)==hp[k].id)
                 strcpy(yacht[i].idPort,hp[k].city);
-        printf("|%-2d|%-6s|%-18s|%-10s|%-10s|%-14s|%-12s|\n", yacht[i].id, yacht[i].gosId, yacht[i].idName, yacht[i].yachtClass,
+        printf("|%-2d|%-6s|%-19s|%-8s|%-8s|%-14s|%-12s|\n", yacht[i].id, yacht[i].gosId, yacht[i].idName, yacht[i].yachtClass,
                yacht[i].yachtType, yacht[i].yachtBody, yacht[i].idPort);
     }
 
-    printf("\n\nwrite EXIT to escape: ");
+    printf("\n\nEnter any character to escape: ");
     char s[10];
     scanf("%s",s);
     return;

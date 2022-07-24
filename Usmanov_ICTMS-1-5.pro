@@ -1,5 +1,5 @@
 TEMPLATE = app
-CONFIG += console
+CONFIG += console c99
 CONFIG -= app_bundle
 CONFIG -= qt
 

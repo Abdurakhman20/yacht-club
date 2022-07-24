@@ -14,22 +14,22 @@
 void displaySprav(){
     system("clear");
     FILE *in =0;
-    in = fopen("/home/abdurakhman/Usmanov_ICTMS-1-5/sprav.db","r");
+    in = fopen("/home/abdurakhman/Usmanov_ICTMS-1-5/spravFile.db","r");
     if (!in){
         printf("\n\nFile is not opened");
         return;
     }
     int NC=0;
     char str[100] = { 0 };
-    while(fscanf(in,"%s",str)!=EOF)
+    while(fscanf(in,"%[^\n]%*c",str)!=EOF)
         NC++;
     fclose(in);
-    in = fopen("/home/abdurakhman/Usmanov_ICTMS-1-5/sprav.db","r");
+    in = fopen("/home/abdurakhman/Usmanov_ICTMS-1-5/spravFile.db","r");
     struct name *sprav;
     sprav = (struct name*)malloc(NC * sizeof(struct name));
     int i;
     for (i = 0; i < NC; i++) {
-        fscanf(in, "%s", str);
+        fscanf(in, "%[^\n]%*c", str);
         char *tok = strtok(str, ";");
         while (tok!=NULL) {
             sprav[i].id = atoi(tok);
@@ -40,7 +40,7 @@ void displaySprav(){
     }
     for(i=0;i<NC;i++)
         printf("%-3d %-20s\n", sprav[i].id, sprav[i].name);
-    printf("\n\nwrite EXIT to escape: ");
+    printf("\n\nEnter any character to escape: ");
     char su[10];
     scanf("%s",su);
     return;
@@ -56,7 +56,7 @@ void spravAdd(){
         printf("\n\nFile is not opened");
         return;
     }
-    while(fscanf(in,"%s",nc)!=EOF)
+    while(fscanf(in,"%[^\n]%*c",nc)!=EOF)
         nN++;
     fclose(in);
     int i, id;
@@ -65,20 +65,20 @@ void spravAdd(){
     scanf("%d", &id);
     printf("Write info: ");
     scanf("%s", zap);
-    in = fopen("/home/abdurakhman/Usmanov_ICTMS-1-5/sprav.db","a+");
+    in = fopen("/home/abdurakhman/Usmanov_ICTMS-1-5/spravFile.db","a+");
     fseek(in,0,SEEK_END);
     fprintf(in, "%d;%s;\n", id, zap);
     fclose(in);
     nN++;
     char buf[100] = {0};
-    in = fopen("/home/abdurakhman/Usmanov_ICTMS-1-5/sprav.db","r");
+    in = fopen("/home/abdurakhman/Usmanov_ICTMS-1-5/spravFile.db","r");
     in2 = fopen("/home/abdurakhman/Usmanov_ICTMS-1-5/name.db","w");
     for(i=0;i<nN;i++)
         fputs(fgets(buf,100,in),in2);
     fclose(in);
     fclose(in2);
     printf("\n\nSuccessful\n");
-    printf("write EXIT to escape: ");
+    printf("Enter any character to escape: ");
     char z[5];
     scanf("%s",z);
     return;
@@ -96,13 +96,13 @@ void spravDelete(){
         printf("\n\nFile is not opened");
         return;
     }
-    while(fscanf(in2,"%s",nc)!=EOF)
+    while(fscanf(in2,"%[^\n]%*c",nc)!=EOF)
         nN++;
     fclose(in2);
     in2 = fopen("/home/abdurakhman/Usmanov_ICTMS-1-5/name.db","r");
     sprav = (struct name*)malloc(nN * sizeof(struct name));
     for (i = 0; i < nN; i++) {
-        fscanf(in2, "%s", str);
+        fscanf(in2, "%[^\n]%*c", str);
         char *tok = strtok(str, ";");
         while (tok!=NULL) {
             sprav[i].id = atoi(tok);
@@ -114,7 +114,7 @@ void spravDelete(){
     fclose(in2);
     printf("\n\nWrite id to delete: ");
     scanf("%d", &k);
-    in = fopen("/home/abdurakhman/Usmanov_ICTMS-1-5/sprav.db","w");
+    in = fopen("/home/abdurakhman/Usmanov_ICTMS-1-5/spravFile.db","w");
     in2 = fopen("/home/abdurakhman/Usmanov_ICTMS-1-5/name.db","r");
     for(i=0;i<nN;i++)
         if(k==sprav[i].id)
@@ -124,7 +124,7 @@ void spravDelete(){
     fclose(in);
     fclose(in2);
     nN--;
-    in = fopen("/home/abdurakhman/Usmanov_ICTMS-1-5/sprav.db","r");
+    in = fopen("/home/abdurakhman/Usmanov_ICTMS-1-5/spravFile.db","r");
     char buf[100] = {0};
     in2 = fopen("/home/abdurakhman/Usmanov_ICTMS-1-5/name.db","w");
     for(i=0;i<nN;i++)
@@ -132,7 +132,7 @@ void spravDelete(){
     fclose(in);
     fclose(in2);
     printf("\n\nSuccessful\n");
-    printf("write EXIT to escape: ");
+    printf("Enter any character to escape: ");
     char z[5];
     scanf("%s",z);
     return;
@@ -150,13 +150,13 @@ void spravEdit(){
         printf("\n\nFile is not opened");
         return;
     }
-    while(fscanf(in2,"%s",nc)!=EOF)
+    while(fscanf(in2,"%[^\n]%*c",nc)!=EOF)
         nN++;
     fclose(in2);
     in2 = fopen("/home/abdurakhman/Usmanov_ICTMS-1-5/name.db","r");
     sprav = (struct name*)malloc(nN * sizeof(struct name));
     for (i = 0; i < nN; i++) {
-        fscanf(in2, "%s", str);
+        fscanf(in2, "%[^\n]%*c", str);
         char *tok = strtok(str, ";");
         while (tok!=NULL) {
             sprav[i].id = atoi(tok);
@@ -171,7 +171,7 @@ void spravEdit(){
     char rep[15];
     printf("Write name: ");
     scanf("%s", rep);
-    in = fopen("/home/abdurakhman/Usmanov_ICTMS-1-5/sprav.db","w");
+    in = fopen("/home/abdurakhman/Usmanov_ICTMS-1-5/spravFile.db","w");
     in2 = fopen("/home/abdurakhman/Usmanov_ICTMS-1-5/name.db","r");
     for(i=0;i<nN;i++)
         if(k==sprav[i].id)
@@ -180,7 +180,7 @@ void spravEdit(){
             fprintf(in, "%d;%s;\n", sprav[i].id, sprav[i].name);
     fclose(in);
     fclose(in2);
-    in = fopen("/home/abdurakhman/Usmanov_ICTMS-1-5/sprav.db","r");
+    in = fopen("/home/abdurakhman/Usmanov_ICTMS-1-5/spravFile.db","r");
     char buf[100] = {0};
     in2 = fopen("/home/abdurakhman/Usmanov_ICTMS-1-5/name.db","w");
     for(i=0;i<nN;i++)
@@ -188,7 +188,7 @@ void spravEdit(){
     fclose(in);
     fclose(in2);
     printf("\n\nSuccessful\n");
-    printf("write EXIT to escape: ");
+    printf("Enter any character to escape: ");
     char z[5];
     scanf("%s",z);
     return;
@@ -201,19 +201,19 @@ void nameOpen(){
     in = fopen("/home/abdurakhman/Usmanov_ICTMS-1-5/name.db","r");
     int NC=0;
     char str[50] = { 0 };
-    while(fscanf(in,"%s",str)!=EOF)
+    while(fscanf(in,"%[^\n]%*c",str)!=EOF)
         NC++;
     fclose(in);
     in = fopen("/home/abdurakhman/Usmanov_ICTMS-1-5/name.db","r");
-    in2 = fopen("/home/abdurakhman/Usmanov_ICTMS-1-5/sprav.db","w");
+    in2 = fopen("/home/abdurakhman/Usmanov_ICTMS-1-5/spravFile.db","w");
     for(i=0;i<NC;i++)
         fputs(fgets(buf,499,in),in2);
     fclose(in);
     fclose(in2);
-    printf("\n\nFile opened\n");
-    printf("write SHOW to show file: ");
-    char z[5];
-    scanf("%s",z);
+    //printf("\n\nFile opened\n");
+    //printf("write SHOW to show file: ");
+    //char z[5];
+    //scanf("%s",z);
     displaySprav();
     return;
 }
@@ -225,19 +225,19 @@ void portOpen(){
     in = fopen("/home/abdurakhman/Usmanov_ICTMS-1-5/home_port.db","r");
     int NC=0;
     char str[50] = { 0 };
-    while(fscanf(in,"%s",str)!=EOF)
+    while(fscanf(in,"%[^\n]%*c",str)!=EOF)
         NC++;
     fclose(in);
     in = fopen("/home/abdurakhman/Usmanov_ICTMS-1-5/home_port.db","r");
-    in2 = fopen("/home/abdurakhman/Usmanov_ICTMS-1-5/sprav.db","w");
+    in2 = fopen("/home/abdurakhman/Usmanov_ICTMS-1-5/spravFile.db","w");
     for(i=0;i<NC;i++)
         fputs(fgets(buf,499,in),in2);
     fclose(in);
     fclose(in2);
-    printf("\n\nFile opened\n");
-    printf("write SHOW to show file: ");
-    char z[5];
-    scanf("%s",z);
+    //printf("\n\nFile opened\n");
+    //printf("write SHOW to show file: ");
+    //char z[5];
+    //scanf("%s",z);
     displaySprav();
     return;
 }

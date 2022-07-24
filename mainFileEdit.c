@@ -15,17 +15,17 @@ void mainAdd(){
     char gosId[10], yachtClass[15], yachtType[15], yachtBody[15];
     char nc[100]= {0};
     char s[10];
-    in = fopen("/home/abdurakhman/Usmanov_ICTMS-1-5/mainf.db","r");
+    in = fopen("/home/abdurakhman/Usmanov_ICTMS-1-5/mainFileYacht.db","r");
     if (!in) {
         printf("\n\nERROR: file is not open\n");
-        printf("write EXIT to escape: ");
+        printf("Enter any character to escape: ");
         scanf("%s",s);
         return;
     }
-    while(fscanf(in,"%s",nc)!=EOF)
+    while(fscanf(in,"%[^\n]%*c",nc)!=EOF)
         mN++;
     fclose(in);
-    in = fopen("/home/abdurakhman/Usmanov_ICTMS-1-5/mainf.db","a+");
+    in = fopen("/home/abdurakhman/Usmanov_ICTMS-1-5/mainFileYacht.db","a+");
     printf("\n\nWrite id: ");
     scanf("%d", &id);
     printf("Write state number of yacht: ");
@@ -44,9 +44,9 @@ void mainAdd(){
     fprintf(in, "%d;%s;%d;%s;%s;%s;%d;\n", id, gosId, idName, yachtClass, yachtType, yachtBody, idPort);
     fclose(in);
     printf("\n\nSuccessful\n");
-    printf("write SHOW to show file: ");
-    char z[5];
-    scanf("%s",z);
+    //printf("write SHOW to show file: ");
+    //char z[5];
+    //scanf("%s",z);
     savefile();
     vivod();
     return;
@@ -59,21 +59,21 @@ void mainDel(){
     int i, id, mN = 0;
     char str[100] = {0}, nc[100]= {0};
     char s[10];
-    in = fopen("/home/abdurakhman/Usmanov_ICTMS-1-5/mainf.db","r");
+    in = fopen("/home/abdurakhman/Usmanov_ICTMS-1-5/mainFileYacht.db","r");
     if (!in) {
         printf("\n\nERROR: file is not open\n");
-        printf("write EXIT to escape: ");
+        printf("Enter any character to escape: ");
         scanf("%s",s);
         return edit();
     }
-    while(fscanf(in,"%s",nc)!=EOF)
+    while(fscanf(in,"%[^\n]%*c",nc)!=EOF)
         mN++;
     fclose(in);
-    in = fopen("/home/abdurakhman/Usmanov_ICTMS-1-5/mainf.db","r");
+    in = fopen("/home/abdurakhman/Usmanov_ICTMS-1-5/mainFileYacht.db","r");
     struct list *yacht;
     yacht = (struct list*)malloc(mN * sizeof(struct list));
     for (i = 0; i < mN; i++) {
-        fscanf(in, "%s", str);
+        fscanf(in, "%[^\n]%*c", str);
         char *tok = strtok(str, ";");
         while (tok!=NULL) {
             yacht[i].id = atoi(tok);
@@ -93,7 +93,7 @@ void mainDel(){
         }
     }
     fclose(in);
-    in = fopen("/home/abdurakhman/Usmanov_ICTMS-1-5/mainf.db","w");
+    in = fopen("/home/abdurakhman/Usmanov_ICTMS-1-5/mainFileYacht.db","w");
     printf("\n\nWrite id to delete: ");
     scanf("%d", &id);
     for(i=0;i<mN;i++)
@@ -104,9 +104,9 @@ void mainDel(){
                     yacht[i].idName, yacht[i].yachtClass, yacht[i].yachtType, yacht[i].yachtBody, yacht[i].idPort);
     fclose(in);
     printf("\n\nSuccessful\n");
-    printf("write SHOW to show file: ");
-    char z[5];
-    scanf("%s",z);
+    //printf("write SHOW to show file: ");
+    //char z[5];
+    //scanf("%s",z);
     savefile();
     vivod();
     return;
@@ -121,21 +121,21 @@ void mainEdit(){
     char gosId[10], yachtClass[15], yachtType[15], yachtBody[15];
     char str[100] = {0}, nc[100]= {0};
     char s[10];
-    in = fopen("/home/abdurakhman/Usmanov_ICTMS-1-5/mainf.db","r");
+    in = fopen("/home/abdurakhman/Usmanov_ICTMS-1-5/mainFileYacht.db","r");
     if (!in) {
         printf("\n\nERROR: file is not open\n");
-        printf("write EXIT to escape: ");
+        printf("Enter any character to escape: ");
         scanf("%s",s);
         return edit();
     }
-    while(fscanf(in,"%s",nc)!=EOF)
+    while(fscanf(in,"%[^\n]%*c",nc)!=EOF)
         mN++;
     fclose(in);
-    in = fopen("/home/abdurakhman/Usmanov_ICTMS-1-5/mainf.db","r");
+    in = fopen("/home/abdurakhman/Usmanov_ICTMS-1-5/mainFileYacht.db","r");
     struct list *yacht;
     yacht = (struct list*)malloc(mN * sizeof(struct list));
     for (i = 0; i < mN; i++) {
-        fscanf(in, "%s", str);
+        fscanf(in, "%[^\n]%*c", str);
         char *tok = strtok(str, ";");
         while (tok!=NULL) {
             yacht[i].id = atoi(tok);
@@ -167,7 +167,7 @@ void mainEdit(){
     scanf("%s", yachtBody);
     printf("Write id of home port: ");
     scanf("%d", &idPort);
-    in = fopen("/home/abdurakhman/Usmanov_ICTMS-1-5/mainf.db","w");
+    in = fopen("/home/abdurakhman/Usmanov_ICTMS-1-5/mainFileYacht.db","w");
     for(i=0;i<mN;i++)
         if(id==yacht[i].id)
             fprintf(in, "%d;%s;%s;%s;%s;%s;%d;\n", id, gosId, yacht[i].idName, yachtClass, yachtType, yachtBody, idPort);
@@ -176,9 +176,9 @@ void mainEdit(){
                     yacht[i].yachtClass, yacht[i].yachtType, yacht[i].yachtBody, yacht[i].idPort);
     fclose(in);
     printf("\n\nSuccessful\n");
-    printf("write SHOW to show file: ");
-    char z[5];
-    scanf("%s",z);
+    //printf("write SHOW to show file: ");
+    //char z[5];
+    //scanf("%s",z);
     savefile();
     vivod();
     return;
