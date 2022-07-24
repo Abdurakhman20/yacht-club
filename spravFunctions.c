@@ -48,61 +48,106 @@ void displaySprav(){
 
 
 void spravAdd(){
-    FILE *in = 0, *in2 = 0;
+    while(1){
+            system("clear");
+            printf("1. add to name.db\n");
+            printf("2. add to home_port.db\n");
+            printf("3. back\n");
+            printf("\nChoose: ");
+            int ch = 0;
+            ch = getchar();
+            printf("\n");
+            switch (ch) {
+            case '1': spravAdd1(); break;
+            case '2': spravAdd2(); break;
+            case '3': return;
+            }
+        }
+}
+
+void spravAdd1(){
+    FILE *in = 0;
     int nN=0;
-    char nc[50] = {0};
+    char nc[50] = {0}, z[5];
     in = fopen("/home/abdurakhman/Usmanov_ICTMS-1-5/name.db","r");
-    if (!in){
-        printf("\n\nFile is not opened");
-        return;
-    }
     while(fscanf(in,"%[^\n]%*c",nc)!=EOF)
         nN++;
     fclose(in);
-    int i, id;
-    char zap[15];
+    int id;
+    char zap[20], s1[10];
+    printf("\n\nWrite id: ");
+    scanf("%d", &id);
+    printf("Write info: ");
+    scanf("%s%s", zap, s1);
+    strcat(zap, " ");
+    strcat(zap, s1);
+    in = fopen("/home/abdurakhman/Usmanov_ICTMS-1-5/name.db","a+");
+    fseek(in,0,SEEK_END);
+    fprintf(in, "%d;%s;\n", id, zap);
+    fclose(in);
+    printf("\n\nSuccessful\n");
+    printf("write BACK to escape: ");
+    scanf("%s",z);
+    return;
+}
+
+void spravAdd2(){
+    FILE *in = 0;
+    int nN=0;
+    char nc[50] = {0}, z[5];
+    in = fopen("/home/abdurakhman/Usmanov_ICTMS-1-5/home_port.db","r");
+    while(fscanf(in,"%[^\n]%*c",nc)!=EOF)
+        nN++;
+    fclose(in);
+    int id;
+    char zap[20];
     printf("\n\nWrite id: ");
     scanf("%d", &id);
     printf("Write info: ");
     scanf("%s", zap);
-    in = fopen("/home/abdurakhman/Usmanov_ICTMS-1-5/spravFile.db","a+");
+    in = fopen("/home/abdurakhman/Usmanov_ICTMS-1-5/home_port.db","a+");
     fseek(in,0,SEEK_END);
     fprintf(in, "%d;%s;\n", id, zap);
     fclose(in);
-    nN++;
-    char buf[100] = {0};
-    in = fopen("/home/abdurakhman/Usmanov_ICTMS-1-5/spravFile.db","r");
-    in2 = fopen("/home/abdurakhman/Usmanov_ICTMS-1-5/name.db","w");
-    for(i=0;i<nN;i++)
-        fputs(fgets(buf,100,in),in2);
-    fclose(in);
-    fclose(in2);
     printf("\n\nSuccessful\n");
-    printf("Enter any character to escape: ");
-    char z[5];
+    printf("write BACK to escape: ");
     scanf("%s",z);
     return;
 }
 
 void spravDelete(){
-    FILE *in = 0, *in2 = 0;
+    while(1){
+            system("clear");
+            printf("1. Delete from name.db\n");
+            printf("2. Delete from home_port.db\n");
+            printf("3. back\n");
+            printf("\nChoose: ");
+            int ch = 0;
+            ch = getchar();
+            printf("\n");
+            switch (ch) {
+            case '1': spravDelete1(); break;
+            case '2': spravDelete2(); break;
+            case '3': return;
+            }
+        }
+}
+
+void spravDelete1(Edit){
+    FILE *in = 0;
     int i, k = 0;
     struct name *sprav;
     int nN = 0;
     char nc[50] = { 0 };
     char str[100] = { 0 };
-    in2 = fopen("/home/abdurakhman/Usmanov_ICTMS-1-5/name.db","r");
-    if (!in2){
-        printf("\n\nFile is not opened");
-        return;
-    }
-    while(fscanf(in2,"%[^\n]%*c",nc)!=EOF)
+    in = fopen("/home/abdurakhman/Usmanov_ICTMS-1-5/name.db","r");
+    while(fscanf(in,"%[^\n]%*c",nc)!=EOF)
         nN++;
-    fclose(in2);
-    in2 = fopen("/home/abdurakhman/Usmanov_ICTMS-1-5/name.db","r");
+    fclose(in);
     sprav = (struct name*)malloc(nN * sizeof(struct name));
+    in = fopen("/home/abdurakhman/Usmanov_ICTMS-1-5/name.db","r");
     for (i = 0; i < nN; i++) {
-        fscanf(in2, "%[^\n]%*c", str);
+        fscanf(in, "%[^\n]%*c", str);
         char *tok = strtok(str, ";");
         while (tok!=NULL) {
             sprav[i].id = atoi(tok);
@@ -111,52 +156,55 @@ void spravDelete(){
             tok = strtok(NULL, ";");
         }
     }
-    fclose(in2);
-    printf("\n\nWrite id to delete: ");
-    scanf("%d", &k);
-    in = fopen("/home/abdurakhman/Usmanov_ICTMS-1-5/spravFile.db","w");
-    in2 = fopen("/home/abdurakhman/Usmanov_ICTMS-1-5/name.db","r");
+    fclose(in);
+    char zap[20], s1[10];
+    if(Edit == 1){
+        printf("\n\nWrite id to Edit: ");
+        scanf("%d", &k);
+        printf("Write info: ");
+        scanf("%s%s", zap, s1);
+        strcat(zap, " ");
+        strcat(zap, s1);
+    }
+    else{
+        printf("\n\nWrite id to delete: ");
+        scanf("%d", &k);
+    }
+    in = fopen("/home/abdurakhman/Usmanov_ICTMS-1-5/name.db","w");
     for(i=0;i<nN;i++)
-        if(k==sprav[i].id)
-            continue;
+        if(k==sprav[i].id){
+            if (Edit == 1){
+                fprintf(in, "%d;%s;\n", k, zap);
+            }
+            else
+                continue;
+        }
         else
             fprintf(in, "%d;%s;\n", sprav[i].id, sprav[i].name);
     fclose(in);
-    fclose(in2);
-    nN--;
-    in = fopen("/home/abdurakhman/Usmanov_ICTMS-1-5/spravFile.db","r");
-    char buf[100] = {0};
-    in2 = fopen("/home/abdurakhman/Usmanov_ICTMS-1-5/name.db","w");
-    for(i=0;i<nN;i++)
-        fputs(fgets(buf,499,in),in2);
-    fclose(in);
-    fclose(in2);
     printf("\n\nSuccessful\n");
-    printf("Enter any character to escape: ");
+    printf("write BACK to escape: ");
     char z[5];
     scanf("%s",z);
     return;
 }
 
-void spravEdit(){
-    FILE *in = 0, *in2 = 0;
+
+void spravDelete2(Edit){
+    FILE *in = 0;
     int i, k = 0;
     struct name *sprav;
     int nN = 0;
     char nc[50] = { 0 };
     char str[100] = { 0 };
-    in2 = fopen("/home/abdurakhman/Usmanov_ICTMS-1-5/name.db","r");
-    if (!in){
-        printf("\n\nFile is not opened");
-        return;
-    }
-    while(fscanf(in2,"%[^\n]%*c",nc)!=EOF)
+    in = fopen("/home/abdurakhman/Usmanov_ICTMS-1-5/home_port.db","r");
+    while(fscanf(in,"%[^\n]%*c",nc)!=EOF)
         nN++;
-    fclose(in2);
-    in2 = fopen("/home/abdurakhman/Usmanov_ICTMS-1-5/name.db","r");
+    fclose(in);
     sprav = (struct name*)malloc(nN * sizeof(struct name));
+    in = fopen("/home/abdurakhman/Usmanov_ICTMS-1-5/home_port.db","r");
     for (i = 0; i < nN; i++) {
-        fscanf(in2, "%[^\n]%*c", str);
+        fscanf(in, "%s", str);
         char *tok = strtok(str, ";");
         while (tok!=NULL) {
             sprav[i].id = atoi(tok);
@@ -165,33 +213,55 @@ void spravEdit(){
             tok = strtok(NULL, ";");
         }
     }
-    fclose(in2);
-    printf("\n\nWrite id to edit: ");
-    scanf("%d", &k);
-    char rep[15];
-    printf("Write name: ");
-    scanf("%s", rep);
-    in = fopen("/home/abdurakhman/Usmanov_ICTMS-1-5/spravFile.db","w");
-    in2 = fopen("/home/abdurakhman/Usmanov_ICTMS-1-5/name.db","r");
+    fclose(in);
+    char zap[20];
+    if(Edit == 1){
+        printf("\n\nWrite id to Edit: ");
+        scanf("%d", &k);
+        printf("Write info: ");
+        scanf("%s", zap);
+    }
+    else{
+        printf("\n\nWrite id to delete: ");
+        scanf("%d", &k);
+    }
+    in = fopen("/home/abdurakhman/Usmanov_ICTMS-1-5/home_port.db","w");
     for(i=0;i<nN;i++)
-        if(k==sprav[i].id)
-            fprintf(in, "%d;%s;\n", k, rep);
+        if(k==sprav[i].id){
+            if (Edit == 1){
+                fprintf(in, "%d;%s;\n", k, zap);
+            }
+            else
+                continue;
+        }
         else
             fprintf(in, "%d;%s;\n", sprav[i].id, sprav[i].name);
     fclose(in);
-    fclose(in2);
-    in = fopen("/home/abdurakhman/Usmanov_ICTMS-1-5/spravFile.db","r");
-    char buf[100] = {0};
-    in2 = fopen("/home/abdurakhman/Usmanov_ICTMS-1-5/name.db","w");
-    for(i=0;i<nN;i++)
-        fputs(fgets(buf,499,in),in2);
-    fclose(in);
-    fclose(in2);
     printf("\n\nSuccessful\n");
-    printf("Enter any character to escape: ");
+    printf("write BACK to escape: ");
     char z[5];
     scanf("%s",z);
     return;
+}
+
+
+
+void spravEdit(){
+    while(1){
+           system("clear");
+           printf("1. Edit name.db\n");
+           printf("2. Edit home_port.db\n");
+           printf("3. back\n");
+           printf("\nChoose: ");
+           int ch = 0;
+           ch = getchar();
+           printf("\n");
+           switch (ch) {
+           case '1': spravDelete1(1); break;
+           case '2': spravDelete2(1); break;
+           case '3': return;
+           }
+       }
 }
 
 void nameOpen(){
@@ -210,10 +280,6 @@ void nameOpen(){
         fputs(fgets(buf,499,in),in2);
     fclose(in);
     fclose(in2);
-    //printf("\n\nFile opened\n");
-    //printf("write SHOW to show file: ");
-    //char z[5];
-    //scanf("%s",z);
     displaySprav();
     return;
 }
@@ -234,10 +300,6 @@ void portOpen(){
         fputs(fgets(buf,499,in),in2);
     fclose(in);
     fclose(in2);
-    //printf("\n\nFile opened\n");
-    //printf("write SHOW to show file: ");
-    //char z[5];
-    //scanf("%s",z);
     displaySprav();
     return;
 }

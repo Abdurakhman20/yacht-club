@@ -28,10 +28,6 @@ void read()
         fputs(fgets(buf,499,in),in2);
     fclose(in);
     fclose(in2);
-    //printf("\n\nSuccessful\n");
-    //printf("write SHOW to show file: ");
-    //char z[5];
-    //scanf("%s",z);
     vivod();
     return;
 }
