@@ -22,7 +22,7 @@ void mainAdd(){
         scanf("%s",s);
         return;
     }
-    while(fscanf(in,"%[^\n]%*c",nc)!=EOF)
+    while(fscanf(in,"%s",nc)!=EOF)
         mN++;
     fclose(in);
     in = fopen("/home/abdurakhman/Usmanov_ICTMS-1-5/mainFileYacht.db","a+");
@@ -66,7 +66,7 @@ void mainDel(){
         scanf("%s",s);
         return edit();
     }
-    while(fscanf(in,"%[^\n]%*c",nc)!=EOF)
+    while(fscanf(in,"%s",nc)!=EOF)
         mN++;
     fclose(in);
     in = fopen("/home/abdurakhman/Usmanov_ICTMS-1-5/mainFileYacht.db","r");
@@ -128,14 +128,14 @@ void mainEdit(){
         scanf("%s",s);
         return edit();
     }
-    while(fscanf(in,"%[^\n]%*c",nc)!=EOF)
+    while(fscanf(in,"%s",nc)!=EOF)
         mN++;
     fclose(in);
     in = fopen("/home/abdurakhman/Usmanov_ICTMS-1-5/mainFileYacht.db","r");
     struct list *yacht;
     yacht = (struct list*)malloc(mN * sizeof(struct list));
     for (i = 0; i < mN; i++) {
-        fscanf(in, "%[^\n]%*c", str);
+        fscanf(in, "%s", str);
         char *tok = strtok(str, ";");
         while (tok!=NULL) {
             yacht[i].id = atoi(tok);
